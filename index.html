@@ -3,109 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <title>Encuesta Especial 💖</title>
+
 <style>
-    body {
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #ff4e88, #ff9a9e);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff4e88, #ff9a9e);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
 
-    .container {
-        background: rgba(0, 0, 0, 0.25);
-        padding: 30px;
-        border-radius: 20px;
-        width: 90%;
-        max-width: 400px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
+.container {
+    background: rgba(0,0,0,0.25);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+}
 
-    h1 {
-        margin-bottom: 20px;
-    }
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
 
-    img {
-        width: 100%;
-        border-radius: 15px;
-        margin-bottom: 20px;
-    }
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+}
 
-    button {
-        padding: 15px 25px;
-        font-size: 18px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        margin: 10px;
-        transition: all 0.3s ease;
-    }
-
-    .yes {
-        background-color: #00e676;
-        color: #000;
-    }
-
-    .no {
-        background-color: #ff1744;
-        color: white;
-    }
-
-    .yes:hover, .no:hover {
-        transform: scale(1.05);
-    }
+.yes { background:#00e676; color:black; }
+.no { background:#ff1744; color:white; }
 </style>
 </head>
 
 <body>
-
-<div class="container" id="screen1">
+  <div class="container" id="screen1">
     <h1>¿Estás lista? 💕</h1>
-    <button class="yes" onclick="goToQuestion()">Sí lo estoy</button>
+    <button class="yes" onclick="mostrarPregunta()">Sí lo estoy</button>
 </div>
 
 <div class="container" id="screen2" style="display:none;">
-    <img src="https://i.ibb.co/HLfDzg8r/1-E33-BED1-5-C45-4678-B529-7-DC4-B7-C5725-D.jpg" alt="Imagen romántica">
+    <img src="https://i.ibb.co/HLfDzg8r/1-E33-BED1-5-C45-4678-B529-7-DC4-B7-C5725-D.jpg">
     <h1>¿Quieres pasar el 14 de febrero conmigo? 💘</h1>
-
-    <div id="buttons">
-        <button class="yes" id="yesBtn" onclick="sayYes()">Sí</button>
-        <button class="no" id="noBtn" onclick="sayNo()">No</button>
-    </div>
+    <button class="yes" id="yesBtn" onclick="respuestaSi()">Sí</button>
+    <button class="no" id="noBtn" onclick="respuestaNo()">No</button>
 </div>
 
 <div class="container" id="screen3" style="display:none;">
     <h1>✨ Te espero para ese día mi princesa ✨</h1>
 </div>
-
 <script>
-    let yesSize = 1;
+let tamañoSi = 1;
 
-    function goToQuestion() {
-        document.getElementById("screen1").style.display = "none";
-        document.getElementById("screen2").style.display = "block";
+function mostrarPregunta() {
+    document.getElementById("screen1").style.display = "none";
+    document.getElementById("screen2").style.display = "block";
+}
+
+function respuestaNo() {
+    tamañoSi += 0.3;
+    document.getElementById("yesBtn").style.transform = "scale(" + tamañoSi + ")";
+    if (tamañoSi >= 2.2) {
+        document.getElementById("noBtn").style.display = "none";
     }
+}
 
-    function sayNo() {
-        const yesBtn = document.getElementById("yesBtn");
-        const noBtn = document.getElementById("noBtn");
-
-        yesSize += 0.3;
-        yesBtn.style.transform = scale(${yesSize});
-
-        if (yesSize >= 2.2) {
-            noBtn.style.display = "none";
-        }
-    }
-
-    function sayYes() {
-        document.getElementById("screen2").style.display = "none";
-        document.getElementById("screen3").style.display = "block";
-    }
+function respuestaSi() {
+    document.getElementById("screen2").style.display = "none";
+    document.getElementById("screen3").style.display = "block";
+}
 </script>
 
 </body>
